@@ -4,6 +4,7 @@ import java.util.List;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -11,6 +12,7 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
+import com.app.dto.fullSchoolResponce;
 import com.app.model.School;
 import com.app.service.SchoolService;
 
@@ -21,6 +23,8 @@ import lombok.RequiredArgsConstructor;
 @RequiredArgsConstructor
 public class SchoolController {
 
+	
+	
 	private final SchoolService schoolService ;
 	
 	
@@ -33,5 +37,10 @@ public class SchoolController {
     @GetMapping
     public ResponseEntity<List<School>> findAllSchools() {
         return ResponseEntity.ok(schoolService.findAllSchool());
+    }
+    
+    @GetMapping("/with-students/{school-id}")
+    public ResponseEntity<fullSchoolResponce> findAllStudentsBySchoolId(@PathVariable("school-id") Integer schoolId) {
+        return ResponseEntity.ok(schoolService.findSchoolsWithStudents(schoolId));
     }
 }
