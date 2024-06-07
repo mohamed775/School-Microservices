@@ -2,8 +2,8 @@ package com.app.service;
 
 import java.util.List;
 
-import com.app.dto.fullSchoolResponce;
 import com.app.model.School;
+import com.app.model.Student;
 
 public interface SchoolService {
 
@@ -11,6 +11,8 @@ public interface SchoolService {
 	
 	List<School> findAllSchool();
 	
-	fullSchoolResponce findSchoolsWithStudents(Integer schoolId);
+	List<Student> getStudentsBySchoolId(Long schoolId);
+	
+//	fullSchoolResponce findSchoolsWithStudents(Integer schoolId);
 	
 }

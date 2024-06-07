@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 import org.springframework.http.HttpStatus;
 
-import com.app.dto.fullSchoolResponce;
 import com.app.model.School;
+import com.app.model.Student;
 import com.app.service.SchoolService;
 
 import lombok.RequiredArgsConstructor;
@@ -39,8 +39,12 @@ public class SchoolController {
         return ResponseEntity.ok(schoolService.findAllSchool());
     }
     
-    @GetMapping("/with-students/{school-id}")
-    public ResponseEntity<fullSchoolResponce> findAllStudentsBySchoolId(@PathVariable("school-id") Integer schoolId) {
-        return ResponseEntity.ok(schoolService.findSchoolsWithStudents(schoolId));
+    @GetMapping("/school/{schoolId}/students")
+    public List<Student> getStudents(@PathVariable Long schoolId) {
+        return schoolService.getStudentsBySchoolId(schoolId);
     }
+//    @GetMapping("/with-students/{school-id}")
+//    public ResponseEntity<fullSchoolResponce> findAllStudentsBySchoolId(@PathVariable("school-id") Integer schoolId) {
+//        return ResponseEntity.ok(schoolService.findSchoolsWithStudents(schoolId));
+//    }
 }
